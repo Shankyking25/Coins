@@ -31,8 +31,8 @@ import "./coins.css"
 
 function Coins() {
 
-
-
+  const [finPlaceholder, setFinPlaceholder] = React.useState('200');
+  const [coinName, setCoinName] = React.useState('MATIC');
   
   const { disconnect } = useDisconnect()
 
@@ -44,18 +44,20 @@ function Coins() {
 
 
 
-  const [drop, setDrop] = React.useState('');
+  const [drop, setDrop] = React.useState('MATIC');
 
   const handleChange = (event) => {
     setDrop(event.target.value);
       
 
-    if (event.target.value == "weth"){
-      console.log("3000")
+    if (event.target.value == "WETH"){
+      setCoinName('WETH')
+      setFinPlaceholder('100')
     }
 
-    else if (event.target.value == "") {
-      console.log("5000")
+   if (event.target.value == "MATIC") {
+     setCoinName('MATIC')
+     setFinPlaceholder('200')
     }
  
   };
@@ -122,11 +124,13 @@ const [number, setNumber] = useState();
 const [result, setResult] = useState();
 
 useEffect(() => {
-  setResult(number * 40000);
+ 
 }, [number]);
 
 const handleInputChange = (event) => {
   setNumber(event.target.value);
+  var Sum = finPlaceholder * event.target.value
+  setResult(Sum);
 }
 
 
@@ -476,12 +480,12 @@ const handleInputChange = (event) => {
                           style={{ height: "60px", fontSize:"30px",color:"white" }}
 
                         >
-                          <MenuItem value=""  >
+                          <MenuItem value="MATIC"  >
                            MATIC
                           </MenuItem>
         
           
-          <MenuItem value="weth">WETH</MenuItem>
+          <MenuItem value="WETH">WETH</MenuItem>
          
         </Select>
       </FormControl>
@@ -514,6 +518,9 @@ const handleInputChange = (event) => {
                     </Grid >                     
                
                                 
+                    
+
+
 
 {/*  <Grid    item style={{border:"2px solid black"}}  xs={12} textAlign="center"md={5.5}   xl={8}  >  */}
                                       <Grid    item  xs={12} textAlign="center"md={4.5}   xl={8}  >
@@ -525,7 +532,7 @@ const handleInputChange = (event) => {
 
                                        {/*   <Grid item pt={0.8}  pr={0.5}  style={{paddingBottom:"0px", marginBottom:"0px",border:"2px solid black"}}  >  */}
                                          <Grid item pt={0.8}  pr={0.5}  style={{paddingBottom:"0px", marginBottom:"0px"}}  >
-                                           <h5  style={{marginBottom:"0px", marginTop:"0px",fontSize:"16px" ,color:"#95B9C7" }}> 1 ETH =</h5>
+                                           <h5  style={{marginBottom:"0px", marginTop:"0px",fontSize:"16px" ,color:"#95B9C7" }}> 1 {coinName} =</h5>
                                          </Grid>
                                    
                                      
@@ -535,14 +542,14 @@ const handleInputChange = (event) => {
                         
                       
                                  
-                                        <Box pl={1} pt={0.5} style={{ backgroundColor: "#3090C7", height: "45%", width: "75px", borderRadius: "8px 0 0 8px" }}>
-                                           <input className='indata' placeholder="40000.00"  style={{ color:"#95B9C7",outline:"none",border:"none", background:"transparent", width:"75px" ,fontSize:"17px" }}   />
+                                        <Box pl={1} pt={0.5} style={{ backgroundColor: "#3090C7", height: "47%", width: "75px", borderRadius: "8px 0 0 8px" }}>
+                                           <input  readOnly className='indata' placeholder={finPlaceholder}  style={{ color:"#95B9C7",outline:"none",border:"none", background:"transparent", width:"75px" ,fontSize:"17px" }}   />
                                          </Box>
                                     </Grid>
                                    
                                             
                                     <Grid item  pt={0.5}  >
-                                           <Box     pt={0.5} pr={2}  style={{backgroundColor:"#3090C7", height:"45%", width:"38px" ,   borderRadius:"0 8px 8px 0"  }}>
+                                           <Box     pt={0.5} pr={2}  style={{backgroundColor:"#3090C7", height:"47%", width:"38px" ,   borderRadius:"0 8px 8px 0"  }}>
                                             <h5   style={{marginTop:"0px",fontSize:"14px",color:"#95B9C7"}} > FIN</h5>
                                             </Box>
                                     </Grid>
@@ -693,14 +700,14 @@ const handleInputChange = (event) => {
                                    
 
                                     <Grid item   pt={0.5} >
-                        <Box pl={1} pt={0.5} style={{ backgroundColor: "#3090C7", height: "45%", }}>
+                        <Box pl={1} pt={0.5} style={{ backgroundColor: "#3090C7", height: "47%", borderRadius:"8px 0 0 8px" }}>
                                         <input className='indata' readOnly  placeholder="0.000025"  style={{ color:"#95B9C7",outline:"none",border:"none", background:"transparent", width:"73px" ,fontSize:"17px" }} />
                                          </Box>
                                     </Grid>
                                    
                  
                                     <Grid item    pt={0.5} >
-                                           <Box     pl={0.5}  pt={0.5}  pr={2}  style={{backgroundColor:"#3090C7", height:"45%", width:"40px" ,   borderRadius:"0 8px 8px 0"  }}>
+                                           <Box     pl={0.5}  pt={0.5}  pr={2}  style={{backgroundColor:"#3090C7", height:"47%", width:"40px" ,   borderRadius:"0 8px 8px 0"  }}>
                                             <h5   style={{color:"#95B9C7", fontSize:"14px", marginTop:"0px",}} > ETH</h5>
                                             </Box>
                                     </Grid>
