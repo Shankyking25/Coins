@@ -1,0 +1,6 @@
+@media screen and (max-width: 576px) {
+	.smBox {
+	  width:20px;
+      font-size: 20px;
+	}
+  }
